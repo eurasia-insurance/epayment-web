@@ -1,0 +1,17 @@
+# some eclipse IDE stuff
+.settings/
+.idea/
+.metadata/
+.project
+.classpath
+.idea
+
+# Mac OS X service directories
+.DS_Store
+
+# root
+logs
+.
+
+# auto-generated
+# sitemap*.xml
