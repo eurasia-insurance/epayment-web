@@ -11,7 +11,7 @@
 
 # root
 logs
-.
+.*
 
 # auto-generated
 # sitemap*.xml
