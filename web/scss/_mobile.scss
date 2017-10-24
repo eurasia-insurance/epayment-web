@@ -1,0 +1,158 @@
+@media only screen and (max-width: 767px) {
+
+    header {
+        h1 {
+            font: bold 36px Helvetica;
+            width: 100%;
+        }
+    }
+    .navbar-brand__logo {
+        width: 180px;
+    }
+    
+    .first-lang-li {
+        margin-left: 0;
+    }
+    .lang-li {
+        .current-lang {
+            margin-left: 10px;
+        }
+    }
+
+    .pluses {
+        & > div:not(:first-child) {
+            margin-top: 15px;
+        }
+    }
+    
+    .main-form {
+        form {
+            margin: 30px 15px;
+            font-size: 16px;
+            overflow: hidden;
+
+            .form-control {
+                width: 100%;
+            }
+        }
+    }
+    .order-form {
+        padding: 30px 15px;
+    }
+    
+    // переключалки
+    .radio-toggles {
+
+        .radio {
+            label {
+                padding: 15px 10px;
+            }
+        }
+    }
+
+    .form-horizontal {
+        .control-label {
+            padding-top: 0;
+        }
+    }
+    .main-form__btn-container {
+        margin-bottom: 0 !important;
+        
+        button {
+            width: 100%;
+        }
+    }
+    .more-details {
+        margin: 15px;
+        text-align: center;
+    }
+    .btn-additional {
+        margin-top: 10px;
+    }
+    .add-car__or {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 10px;
+        margin-left: 3px;
+    }
+
+    .about-company {
+        margin-top: 20px;
+    }
+    
+    .about-company__text {
+        .btn {
+            margin-bottom: 20px;
+        }
+    }
+    .about-company__payments {
+        padding: 35px;
+        margin-bottom: 30px;
+        background: #FCFBF9;
+        
+        h2 {
+            margin: 0 0 5px;
+        }
+    }
+    .about-company__links {
+        text-align: center
+    }
+    
+    .footer__grafica {
+        float: none;
+        width: 270px;
+        margin-top: 30px;
+    }
+    
+    .modal-transparent {
+        .modal-dialog {
+            margin: 50px auto 0;
+        }
+        .modal-title {
+            font-size: 36px;
+        }
+    }
+    
+    #callback-form {
+        white-space:normal;
+        
+        .form-control {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            width: 100%;
+        }
+    }
+    
+    .footer__box {
+        margin: 15px 0 30px
+    }
+    
+    .order-body {
+        padding: 20px 20px 50px;
+        h1 {
+            font: bold 28px/32px Helvetica;
+        }
+    }
+    .order-details {
+        margin-top: 50px;
+
+        .col-md-4 {
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+            padding-bottom: 30px;
+        }
+
+        hr {
+            border-color: #fff;
+            margin: 5px;
+        }
+    }
+    .order-fin {
+        margin-top: 0;
+    }
+
+}
