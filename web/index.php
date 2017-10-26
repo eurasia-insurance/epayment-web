@@ -71,6 +71,8 @@ if(null != $orderId) {
 
         header("HTTP/1.0 ".$order['code']);
 //                ." ".$msg[0]['message']);
+
+        $serverError = true;
     } else {
         // Нашли счёт
         $orderNotFound = false;
@@ -181,7 +183,13 @@ if(null != $orderId) {
         <section>
             <div class="container">
                 <div class="order-body">
-                    <?php if($orderNotFound === false): ?>
+                    <?php if(isset($serverError)): ?>
+                    <h1>Кажется, что-то пошло не так</h1>
+
+                    <p>Пожалуйста, загляните чуть позже, мы всё исправим.</p>
+
+                    <p>Или позвоните: <a href="tel:88000800099">8 800 080-00-99</a> или <a href="tel:5678">5678</a> с мобильного (звонок бесплатный).</p>
+                    <?php elseif($orderNotFound === false): ?>
                     <h1><?= _("Заказ №").$order['payment']['externalId'] ?> <span class="order-status <?= strtolower($order['status']) ?>"><?= $status ?></span></h1>
                     <?php if($order['status'] == 'PAID'): ?>
                     <span class="order-date">Дата оплаты <?= Util_Misc::tstamp2rus(strtotime($order['paid']), true, true) ?></span>
