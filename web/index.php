@@ -171,8 +171,8 @@ if(null != $orderId) {
                             <li><span><a href="tel:88000800099" class="header-tel">8 800 080-00-99</a> <br class="visible-sm-inline"/><?= _("или") ?> <a href="tel:5678" class="header-tel">5678</a><br/><small><?= _("звонок бесплатный") ?></small></span></li>
 
                             <li><a href="https://eurasia36.kz/contacts.php<?= $lang != 'ru' ? "?lang=$lang" : '' ?>"><?= _("Адреса и телефоны") ?></a></li>
-                            <li class="lang-li first-lang-li"><?php if($lang == 'ru'): ?><span class="current-lang">RU</span><?php else: ?><a href="/?order=<?= $orderId ?>">RU</a><?php endif; ?></li>
-                            <li class="lang-li"><?php if($lang == 'kz'): ?><span class="current-lang">KZ</span><?php else: ?><a href="/kz?order=<?= $orderId ?>">KZ</a><?php endif; ?></li>
+                            <li class="lang-li first-lang-li"><?php if($lang == 'ru'): ?><span class="current-lang">RU</span><?php else: ?><a href="/invoice/<?= $orderId ?>">RU</a><?php endif; ?></li>
+                            <li class="lang-li"><?php if($lang == 'kz'): ?><span class="current-lang">KZ</span><?php else: ?><a href="/kz/invoice/<?= $orderId ?>">KZ</a><?php endif; ?></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
