@@ -66,13 +66,15 @@ if(null != $orderId) {
         $msg = json_decode($order['message'], true);
 
 //    echo '<pre>';
-//    print_r($msg);
+//    print_r($order);
 //    die('</pre>');
 
         header("HTTP/1.0 ".$order['code']);
 //                ." ".$msg[0]['message']);
 
-        $serverError = true;
+        if($order['code'] == 404 || $order['code'] == 503) {
+            $serverError = true;
+        }
     } else {
         // Нашли счёт
         $orderNotFound = false;
