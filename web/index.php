@@ -66,11 +66,15 @@ if(null != $orderId) {
         $msg = json_decode($order['message'], true);
 
 //    echo '<pre>';
-//    print_r($msg);
+//    print_r($order);
 //    die('</pre>');
 
         header("HTTP/1.0 ".$order['code']);
 //                ." ".$msg[0]['message']);
+
+        if($order['code'] == 404 || $order['code'] == 503) {
+            $serverError = true;
+        }
     } else {
         // Нашли счёт
         $orderNotFound = false;
@@ -171,8 +175,8 @@ if(null != $orderId) {
                             <li><span><a href="tel:88000800099" class="header-tel">8 800 080-00-99</a> <br class="visible-sm-inline"/><?= _("или") ?> <a href="tel:5678" class="header-tel">5678</a><br/><small><?= _("звонок бесплатный") ?></small></span></li>
 
                             <li><a href="https://eurasia36.kz/contacts.php<?= $lang != 'ru' ? "?lang=$lang" : '' ?>"><?= _("Адреса и телефоны") ?></a></li>
-                            <li class="lang-li first-lang-li"><?php if($lang == 'ru'): ?><span class="current-lang">RU</span><?php else: ?><a href="/?order=<?= $orderId ?>">RU</a><?php endif; ?></li>
-                            <li class="lang-li"><?php if($lang == 'kz'): ?><span class="current-lang">KZ</span><?php else: ?><a href="/kz?order=<?= $orderId ?>">KZ</a><?php endif; ?></li>
+                            <li class="lang-li first-lang-li"><?php if($lang == 'ru'): ?><span class="current-lang">RU</span><?php else: ?><a href="/invoice/<?= $orderId ?>">RU</a><?php endif; ?></li>
+                            <li class="lang-li"><?php if($lang == 'kz'): ?><span class="current-lang">KZ</span><?php else: ?><a href="/kz/invoice/<?= $orderId ?>">KZ</a><?php endif; ?></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -181,29 +185,42 @@ if(null != $orderId) {
         <section>
             <div class="container">
                 <div class="order-body">
-                    <?php if($orderNotFound === false): ?>
-                    <h1><?= _("Счёт №").$order['payment']['externalId'] ?> <span class="order-status <?= strtolower($order['status']) ?>"><?= $status ?></span></h1>
+                    <?php if(isset($serverError)): ?>
+                    <h1>Кажется, что-то пошло не так</h1>
+
+                    <p>Пожалуйста, загляните чуть позже, мы всё исправим.</p>
+
+                    <p>Или позвоните: <a href="tel:88000800099">8 800 080-00-99</a> или <a href="tel:5678">5678</a> с мобильного (звонок бесплатный).</p>
+                    <?php elseif($orderNotFound === false): ?>
+                    <h1><?= _("Заказ №").$order['payment']['externalId'] ?> <span class="order-status <?= strtolower($order['status']) ?>"><?= $status ?></span></h1>
                     <?php if($order['status'] == 'PAID'): ?>
-                    <span class="order-date"><?= Util_Misc::tstamp2rus(strtotime($order['paid']), false, true) ?></span>
+                    <span class="order-date">Дата оплаты <?= Util_Misc::tstamp2rus(strtotime($order['paid']), true, true) ?></span>
                     <?php else: ?>
                     <span class="order-date"><?= Util_Misc::tstamp2rus(strtotime($order['created']), false, true) ?></span>
                     <?php endif; ?>
 
-                    <?php foreach($order['payment']['items'] as $item): ?>
+                    <?php foreach($order['payment']['items'] as $i => $item): ?>
                         <div class="row order-details">
                             <div class="col-xs-12 col-md-4">
-                                <span class="order-details__name">Вид страховки</span>
+                                <?php if($i == 0): ?>
+                                <span class="order-details__name">Клиент</span>
                                 <hr/>
+                                <?= htmlspecialchars(mb_convert_case(mb_strtolower($order['payer']['name'], "UTF-8"), MB_CASE_TITLE, "UTF-8")) ?><br/>
+                                <small class="gray"><?= htmlspecialchars($order['payer']['email']) ?></small>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <?php if($i == 0): ?>
+                                <span class="order-details__name">Что&nbsp;оплачиваем</span>
+                                <hr/>
+                                <?php endif; ?>
                                 <?= htmlspecialchars($item['title']); ?>
                             </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span class="order-details__name">Получатель</span>
+                            <div class="col-xs-6 col-md-4">
+                                <?php if($i == 0): ?>
+                                <span class="order-details__name">К&nbsp;оплате</span>
                                 <hr/>
-                                <?= htmlspecialchars(mb_convert_case(mb_strtolower($order['payer']['name'], "UTF-8"), MB_CASE_TITLE, "UTF-8")) ?>
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span class="order-details__name">К оплате</span>
-                                <hr/>
+                                <?php endif; ?>
                                 <span class="order-cost"><?= Util_Misc::numberFormat($item['amount']) ?> тг</span>
                             </div>
                         </div>
@@ -216,7 +233,7 @@ if(null != $orderId) {
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-12 text-right">
+                        <div class="col-xs-12 col-md-4 order-form__col pull-right">
                             <?php
                             if($order['status'] == 'READY') {
                                 foreach($order['availableMethods'] as $method) {
@@ -224,8 +241,6 @@ if(null != $orderId) {
                                         echo '<form method="'.$method['httpForm']['method'].'" action="'.$method['httpForm']['uri'].'">';
 
                                         foreach($method['httpForm']['params'] as $param) {
-
-
                                             echo '<input type="hidden" name="'.$param['name'].'" value="'.$param['value'].'" />';
                                         }
 
@@ -235,6 +250,12 @@ if(null != $orderId) {
                                 }
                             }
                             ?>
+                        </div>
+                        <div class="col-xs-12 col-md-8 order-number">
+                            <small class="gray">Счёт <?= htmlspecialchars($order['id']); ?></small>
+                            <?php if(!empty($order['result'])): ?>
+                            <small class="gray"> &middot; Референс <?= htmlspecialchars($order['result']['paymentReference']); ?></small>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <?php else: ?>
