@@ -81,19 +81,19 @@ if(null != $orderId) {
 
         switch($order['status']) {
             case 'READY':
-                $status = 'ожидает оплаты';
+                $status = _('ожидает оплаты');
                 break;
 
             case 'PAID':
-                $status = 'оплачен';
+                $status = _('оплачен');
                 break;
 
             case 'CANCELED':
-                $status = 'отменен';
+                $status = _('отменен');
                 break;
 
             case 'FAILED':
-                $status = 'оплата не прошла';
+                $status = _('оплата не прошла');
                 break;
 
             default:
@@ -186,24 +186,24 @@ if(null != $orderId) {
             <div class="container">
                 <div class="order-body">
                     <?php if(isset($serverError)): ?>
-                    <h1>Кажется, что-то пошло не так</h1>
+                    <h1><?= _("Кажется, что-то пошло не так") ?></h1>
 
-                    <p>Пожалуйста, загляните чуть позже, мы всё исправим.</p>
+                    <p><?= _("Пожалуйста, загляните чуть позже, мы всё исправим.") ?></p>
 
-                    <p>Или позвоните: <a href="tel:88000800099">8 800 080-00-99</a> или <a href="tel:5678">5678</a> с мобильного (звонок бесплатный).</p>
+                    <p><?= _("Или позвоните: <a href=\"tel:88000800099\">8 800 080-00-99</a> или <a href=\"tel:5678\">5678</a> с мобильного (звонок бесплатный).") ?></p>
                     <?php elseif($orderNotFound === false): ?>
                     <h1><?= _("Заказ №").$order['payment']['externalId'] ?> <span class="order-status <?= strtolower($order['status']) ?>"><?= $status ?></span></h1>
                     <?php if($order['status'] == 'PAID'): ?>
-                    <span class="order-date">Дата оплаты <?= Util_Misc::tstamp2rus(strtotime($order['paid']), true, true) ?></span>
+                    <span class="order-date"><?= _("Дата оплаты")?> <?= $lang == 'kz' ? Util_Misc::tstamp2kz(strtotime($order['paid']), true, true) : Util_Misc::tstamp2rus(strtotime($order['paid']), true, true) ?></span>
                     <?php else: ?>
-                    <span class="order-date"><?= Util_Misc::tstamp2rus(strtotime($order['created']), false, true) ?></span>
+                    <span class="order-date"><?= $lang == 'kz' ? Util_Misc::tstamp2kz(strtotime($order['created']), false, true) : Util_Misc::tstamp2rus(strtotime($order['created']), false, true) ?></span>
                     <?php endif; ?>
 
                     <?php foreach($order['payment']['items'] as $i => $item): ?>
                         <div class="row order-details">
                             <div class="col-xs-12 col-md-4">
                                 <?php if($i == 0): ?>
-                                <span class="order-details__name">Клиент</span>
+                                <span class="order-details__name"><?= _("Получатель") ?></span>
                                 <hr/>
                                 <?= htmlspecialchars(mb_convert_case(mb_strtolower($order['payer']['name'], "UTF-8"), MB_CASE_TITLE, "UTF-8")) ?><br/>
                                 <small class="gray"><?= htmlspecialchars($order['payer']['email']) ?></small>
@@ -211,14 +211,14 @@ if(null != $orderId) {
                             </div>
                             <div class="col-xs-6 col-md-4">
                                 <?php if($i == 0): ?>
-                                <span class="order-details__name">Что&nbsp;оплачиваем</span>
+                                <span class="order-details__name"><?= _("Что&nbsp;оплачиваем") ?></span>
                                 <hr/>
                                 <?php endif; ?>
                                 <?= htmlspecialchars($item['title']); ?>
                             </div>
                             <div class="col-xs-6 col-md-4">
                                 <?php if($i == 0): ?>
-                                <span class="order-details__name">К&nbsp;оплате</span>
+                                <span class="order-details__name"><?= _("К&nbsp;оплате") ?></span>
                                 <hr/>
                                 <?php endif; ?>
                                 <span class="order-cost"><?= Util_Misc::numberFormat($item['amount']) ?> тг</span>
@@ -244,7 +244,7 @@ if(null != $orderId) {
                                             echo '<input type="hidden" name="'.$param['name'].'" value="'.$param['value'].'" />';
                                         }
 
-                                        echo '<button class="btn btn-blue">Оплатить картой&nbsp;&nbsp;<img src="/i/card.svg" alt="" /></button>';
+                                        echo '<button class="btn btn-blue">'._("Оплатить картой").'&nbsp;&nbsp;<img src="/i/card.svg" alt="" /></button>';
                                         echo '</form>';
                                     }
                                 }
@@ -252,7 +252,7 @@ if(null != $orderId) {
                             ?>
                         </div>
                         <div class="col-xs-12 col-md-8 order-number">
-                            <small class="gray">Счёт <?= htmlspecialchars($order['id']); ?></small>
+                            <small class="gray"><?= _("Счёт") ?> <?= htmlspecialchars($order['id']); ?></small>
                             <?php if(!empty($order['result'])): ?>
                             <small class="gray"> &middot; Референс <?= htmlspecialchars($order['result']['paymentReference']); ?></small>
                             <?php endif; ?>
