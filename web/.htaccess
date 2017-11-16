@@ -6,6 +6,6 @@
     RewriteCond %{REQUEST_FILENAME} -l [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^.*$ - [NC,L]
-    RewriteRule ^invoice/(\d+)/?$ index.php?order=$1 [QSA,L]
-    RewriteRule ^(ru|kz|en)/invoice/(\d+)/?$ index.php?order=$2&lang=$1 [QSA,L]
+    RewriteRule ^invoice/([\da-f\-].+)/?$ index.php?order=$1 [QSA,L]
+    RewriteRule ^(ru|kz|en)/invoice/([\da-f\-].+)/?$ index.php?order=$2&lang=$1 [QSA,L]
 </IfModule>
