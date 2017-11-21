@@ -106,7 +106,8 @@ if(null != $orderId) {
 //    print_r($order);
 //    die('</pre>');
 } else {
-    header("HTTP/1.0 404 Not Found");
+    header("Location: ".HOME_HOST, true, 303);
+    exit;
 }
 
 ?>
