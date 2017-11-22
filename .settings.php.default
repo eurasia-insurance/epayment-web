@@ -1,4 +1,6 @@
 <?
+    const HOME_HOST = 'HOME_HOST';
+
     const PARAM_WS_HOST = 'WS_BASE_URL';
     const PARAM_WS_USER = 'WS_USER_LOGIN';
     const PARAM_WS_PWD  = 'WS_USER_PASSWORD';
