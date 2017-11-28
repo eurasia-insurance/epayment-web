@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>404 — Страница не найдена</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/css/404.css?2asasdd" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <span id="four1" class="fly"><img src="/i/4-1.svg" alt=""/></span>
+        <span id="zero" class="fly"><img src="/i/0.svg" alt=""/></span>
+        <span id="man" class="fly"><img src="/i/man.png" alt=""/></span>
+        <span id="four2" class="fly"><img src="/i/4-2.svg" alt=""/></span>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <a href="/"><img src="/i/logo-ru.svg" alt="Евразия" class="logo" /></a>
+
+                    <h1 class="visible-xs">404</h1>
+                    <p class="error-text">
+                        К сожалению, такой страницы не существует.<br class="visible-md"/>
+                        По срочному вопросу поможем по телефону:
+                    </p>
+                    <p class="tels">
+                        <a href="tel:88000800099" class="tel">8 800 080-00-99</a> или <a href="tel:5678" class="tel">5678</a><br/>
+                        (звонок бесплатный)
+                    </p>
+                    
+                    <a href="/" class="home">На главную</a>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        © АО «Страховая компания «Евразия»
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+
+            var currX, currY;
+
+            $(document).ready(function () {
+                
+                $('body').mousemove(function (e) {
+                    
+                    if(currX === undefined) {
+                        currX = e.pageX;
+                    }
+                    if(currY === undefined) {
+                        currY = e.pageY;
+                    }
+
+//                    parallax(e, this, 1);
+                    parallax(e, document.getElementById('four1'), 2);
+                    parallax(e, document.getElementById('zero'), 3.5);
+                    parallax(e, document.getElementById('man'), 5);
+                    parallax(e, document.getElementById('four2'), 10);
+
+                    currX = e.pageX;
+                    currY = e.pageY;
+                });
+            });
+
+            function parallax(e, target, layer) {
+
+                var layer_coeff = 50 / layer;
+
+                var moveX = (e.pageX - currX) * -1 / layer_coeff;
+                var moveY = (e.pageY - currY) * -1 / layer_coeff;
+
+                var x = parseFloat($(target).css('left')) + moveX;
+                var y = parseFloat($(target).css('top')) + moveY;
+
+                $(target).css({ top: y, left : x });
+            };
+        </script>
+        
+    </body>
+</html>
