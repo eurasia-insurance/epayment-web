@@ -9,3 +9,12 @@
     RewriteRule ^invoice/([\da-f\-].+)/?$ index.php?order=$1 [QSA,L]
     RewriteRule ^(ru|kz|en)/invoice/([\da-f\-].+)/?$ index.php?order=$2&lang=$1 [QSA,L]
 </IfModule>
+
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+php_flag   display_errors       Off
+php_value  auto_prepend_file    register-error-handlers.php
+
+# put line above to the host's main config file
+#    php_value include_path ".:PATH_TO_DOCUMENT_ROOT"
