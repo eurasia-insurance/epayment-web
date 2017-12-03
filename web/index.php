@@ -154,7 +154,7 @@ if(null != $orderId) {
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="http://eurasia36.kz" class="navbar-brand"><img src="/i/logo-<?= $lang ?>.svg" alt="Евразия" class="navbar-brand__logo" /></a>
+                        <a href="<?=HOME_HOST?>" class="navbar-brand"><img src="/i/logo-<?= $lang ?>.svg" alt="Евразия" class="navbar-brand__logo" /></a>
 
                         <?php
                         /**
