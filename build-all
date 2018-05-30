@@ -1,0 +1,6 @@
+#!/bin/sh
+
+./recompile-sccs
+./minify-css
+
+./recompile-i18n

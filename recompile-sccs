@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "`date` Rebuilding scss bundles"
+test -z `which sass 2>/dev/null` && { echo "`date` No sass installed. Skiped"; exit 1; }
+
+echo "`date` Cleanup..."
+rm -f web/css/*.css
+rm -f web/css/*.css.map
+
+echo "`date` Building..."
+sass --update web/scss/:web/css/ && {
+    echo "`date` Done"
+}
