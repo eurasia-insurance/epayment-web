@@ -1,10 +1,11 @@
 #!/bin/bash
 
 export GREEN='\033[0;32m'
+export RED='\033[0;31m'
 export NC='\033[0m' # No Color
 
 echo "`date` Minifying css"
-test -z `which yc 2>/dev/null` && { echo "`date` No yc installed. Skiped"; exit 1; }
+test -z `which yc 2>/dev/null` && { echo -e "`date` ${RED}No yc installed. Skiped${NC}"; exit 1; }
 
 echo "`date` Building..."
 yc --type css -o '.css$:.css' web/css/*.css && {
