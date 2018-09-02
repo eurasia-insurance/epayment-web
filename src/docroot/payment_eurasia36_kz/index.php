@@ -4,8 +4,8 @@ header('Content-Type: text/html; charset=utf-8');
 
 session_start();
 
-require './api/EurasiaAPI.php';
-require './api/Misc.php';
+require __DIR__ . '/api/EurasiaAPI.php';
+require __DIR__ . '/api/Misc.php';
 
 
 $langs = ['ru' => ['Русский', 'ru_RU', 'RUSSIAN'], 'kz' => ['Қазақша', 'kk_KZ', 'KAZAKH']/*, 'en' => ['English', 'en_US']*/];

@@ -1,6 +1,6 @@
 <?php
 
-require_once './.settings.php'; # settings needs to be in a separate file due to requirements of portability
+require_once __DIR__ . '/settings.php'; # settings needs to be in a separate file due to requirements of portability
 
 class EurasiaAPI {
 
