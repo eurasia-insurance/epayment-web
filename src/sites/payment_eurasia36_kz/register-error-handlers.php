@@ -9,8 +9,7 @@ function to500() {
     ob_end_clean();
     http_response_code(500);
 #    header("Location: /500.html");
-
-    include $_SERVER[DOCUMENT_ROOT].'/500.html';
+#    include __DIR__ .'/500.html';
     die;
 }
 
