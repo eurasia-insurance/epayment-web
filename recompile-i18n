@@ -1,13 +1,8 @@
 #!/bin/bash
 
-curdir="$(pwd)"
+CMD="docker run --rm -v $(pwd)/web:/web -v $(pwd)/src/i18n:/src -v $(pwd)/web/i18n:/i18n lapsatech/msgfmt:latest"
 
-DVOLS="-v $curdir/web:/web -v $curdir/src/i18n:/src -v $curdir/web/i18n:/i18n"
-
-DIMG="lapsatech/msgfmt:latest"
-DRUN="docker run --rm"
-
-$DRUN $DVOLS $DIMG xgettext
-$DRUN $DVOLS $DIMG msgmerge kk KZ
-rm -rf $curdir/web/i18n
-$DRUN $DVOLS $DIMG msgfmt
+$CMD xgettext
+$CMD msgmerge kk KZ
+rm -rf $(pwd)/web/i18n
+$CMD msgfmt
