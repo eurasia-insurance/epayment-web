@@ -1,0 +1,113 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: payment.eurasia36.kz\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-31 07:57+0000\n"
+"PO-Revision-Date: 2017-10-31 21:25+0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: /web/index.php:182
+msgid "Адреса и телефоны"
+msgstr "Байланыстар"
+
+#: /web/index.php:202
+msgid "Дата оплаты"
+msgstr "Төлем күні"
+
+#: /web/index.php:200
+msgid "Заказ №"
+msgstr "Тапсырыс №"
+
+#: /web/index.php:198
+msgid ""
+"Или позвоните: <a href=\"tel:88000800099\">8 800 080-00-99</a> или <a href="
+"\"tel:5678\">5678</a> с мобильного (звонок бесплатный)."
+msgstr ""
+"Немесе қоңырау шалыңыз: <a href=\"tel:88000800099\">8 800 080-00-99</a> "
+"немесе <a href=\"tel:5678\">5678</a> ұялы телефоннан (қоңырау шалу тегін)."
+
+#: /web/index.php:226
+msgid "К&nbsp;оплате"
+msgstr "Төленуге&nbsp;жатады"
+
+#: /web/index.php:194
+msgid "Кажется, что-то пошло не так"
+msgstr "Бір нәрсе дұрыс болмаған секілді"
+
+#: /web/index.php:252
+msgid "Оплатить картой"
+msgstr "Картамен төлеу"
+
+#: /web/index.php:196
+msgid "Пожалуйста, загляните чуть позже, мы всё исправим."
+msgstr "Өтінеміз, сәлден кейін қайта қараңыз, біз бәрін түзетеміз."
+
+#: /web/index.php:211
+msgid "Получатель"
+msgstr "Алушы"
+
+#: /web/index.php:130
+msgid "Просмотр счёта"
+msgstr "Есепшотты қарап шығу"
+
+#: /web/index.php:260
+msgid "Счёт"
+msgstr "Есептік жазба"
+
+#: /web/index.php:267
+msgid "Счёт не найден"
+msgstr "Есептік жазба табылған жоқ"
+
+#: /web/index.php:219
+msgid "Что&nbsp;оплачиваем"
+msgstr "Нені&nbsp;төлейміз"
+
+#: /web/index.php:180
+msgid "звонок бесплатный"
+msgstr "қоңырау шалу тегін"
+
+#. *
+#. <div class="dropdown langs">
+#. <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+#. <?= $langs[$lang][0] ?>
+#. <span class="caret"></span>
+#. </button>
+#. <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+#. <?php foreach($langs as $key => $l): ?>
+#. <?php if($key != $lang): ?>
+#. <li><a href="/<?= $key != 'ru' ? $key : '' ?>"><?= $l[0] ?></a></li>
+#. <?php endif; ?>
+#. <?php endforeach; ?>
+#. </ul>
+#. </div>
+#. *
+#.
+#: /web/index.php:180
+msgid "или"
+msgstr "немесе"
+
+#: /web/index.php:84
+msgid "ожидает оплаты"
+msgstr "төлем күтілуде"
+
+#: /web/index.php:96
+msgid "оплата не прошла"
+msgstr "төлем өткен жоқ"
+
+#: /web/index.php:88
+msgid "оплачен"
+msgstr "төленді"
+
+#: /web/index.php:92
+msgid "отменен"
+msgstr "жойылды"
