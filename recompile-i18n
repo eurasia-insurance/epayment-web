@@ -1,26 +1,13 @@
 #!/bin/bash
 
-export GREEN='\033[0;32m'
-export NC='\033[0m' # No Color
+curdir="$(pwd)"
 
+DVOLS="-v $curdir/web:/web -v $curdir/src/i18n:/src -v $curdir/web/i18n:/i18n"
 
-echo "`date` Rebuilding i18n bundles"
-test -z `which msgfmt 2>/dev/null` && { echo "`date` No msgfmt installed. Skiped"; exit 1; }
+DIMG="lapsatech/msgfmt:latest"
+DRUN="docker run --rm"
 
-recompile_cmd() {
-    source=$1
-    target=`echo $source | sed -e 's/\.po$/\.mo/'`
-#    test -f "$target" && action="write" || action="create"
-    msgfmt $source -o $target
-    echo -e "      ${GREEN}write $target${NC}"
-}
-
-export -f recompile_cmd
-
-echo "`date` Cleanup..."
-find web/i18n -type f -name *.mo -exec rm -f {} \;
-
-echo "`date` Building..."
-find web/i18n -type f -name *.po -exec bash -c 'recompile_cmd "$0"' {} \; && {
-    echo "`date` Done"
-}
+$DRUN $DVOLS $DIMG xgettext
+$DRUN $DVOLS $DIMG msgmerge kk KZ
+rm -rf $curdir/web/i18n
+$DRUN $DVOLS $DIMG msgfmt
