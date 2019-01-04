@@ -2,5 +2,5 @@
 
 CMD="docker run --rm -v $(pwd)/web:/web -v $(pwd)/src/i18n:/src -v $(pwd)/web/i18n:/i18n lapsatech/msgfmt:latest"
 
-rm -rf $(pwd)/web/i18n
-$CMD msgfmt
+$CMD xgettext
+$CMD msgmerge kk KZ
