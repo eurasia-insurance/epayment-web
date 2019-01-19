@@ -27,9 +27,9 @@ class EurasiaAPI {
     /**
      * Запрос к API
      *
-     * @param type $url адрес АПИ метода
-     * @param type $data данные
-     */
+     * @param $url - адрес АПИ метода
+     * @param $data - данные
+     *     */
     public static function request($url, $data, $method = 'post', $apiLang = 'ru') {
 
         $logPath = __DIR__.'/../logs/';

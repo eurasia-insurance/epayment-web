@@ -570,7 +570,7 @@ class Util_Misc {
      * Упрощенная версия arrayKeysFromField
      *
      * @param ArrayAccess | array $array - массив с которым работаем
-     * @param type $field - поле по которому группируем (должно быть уникальным)
+     * @param $field - поле по которому группируем (должно быть уникальным)
      * @return array - вернем ассоц массив
      */
     public static function toAssocArray($array, $field = 'id')
@@ -825,8 +825,8 @@ class Util_Misc {
 
     /**
      *
-     * @param type $phones
-     * @param array $options
+     * @param $phones
+     * @param $options
      */
     public static function phonesFormatShow($phones, array $options = array())
         {
